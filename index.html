@@ -167,6 +167,27 @@ footer {
     text-align: center;
     margin-top: 40px;
     font-size: 14px;
+    padding-top: 20dvh;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.footer-links a {
+    color: #B6B6B6;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+    color: #5A5A5A;
+    font-size: 14.6px
 }
 
 @media (max-width: 600px) {
@@ -188,82 +209,7 @@ footer {
     }
 }
 
-.menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
 
-#menuToggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-#menuItems {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#menuItems li {
-    display: inline-block;
-    margin-left: 15px;
-}
-
-#menuItems a {
-    text-decoration: none;
-    color: #050419;
-    font-weight: bold;
-}
-
-#menuItems a:hover {
-    text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-    .menu {
-        position: static;
-        text-align: right;
-        margin-bottom: 20px;
-    }
-
-    #menuToggle {
-        display: inline-block;
-    }
-
-    #menuItems {
-        display: none;
-        position: absolute;
-        right: 0;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    #menuItems.show {
-        display: block;
-    }
-
-    #menuItems li {
-        display: block;
-        margin: 0;
-    }
-
-    #menuItems a {
-        color: #050419;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    #menuItems a:hover {
-        background-color: #f1f1f1;
-    }
-}
     </style>
 </head>
 <body>
@@ -318,7 +264,9 @@ footer {
             <div class="footer-content">
                 <p>&copy;2024 PEDRO ROSEMBERG</p>
                 <div class="footer-links">
-                    <a href="#">Termos de Uso</a>
+                    <a href="https://www.pedrorosemberg.com" target="_blank"> Developed by 
+                        <img src="dev-icon.png" width="15px" alt="Desenvolvido por Pedro Rosemberg">
+                    </a>
                 </div>
             </div>
         </footer>
