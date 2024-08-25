@@ -44,6 +44,99 @@ body {
     }
 }
 
+        button {
+    background-color: #050419;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0a0833;
+}
+
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#menuItems {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menuItems li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#menuItems a {
+    text-decoration: none;
+    color: #050419;
+    font-weight: bold;
+}
+
+#menuItems a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        position: static;
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    #menuToggle {
+        display: inline-block;
+    }
+
+    #menuItems {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    #menuItems.show {
+        display: block;
+    }
+
+    #menuItems li {
+        display: block;
+        margin: 0;
+    }
+
+    #menuItems a {
+        color: #050419;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    #menuItems a:hover {
+        background-color: #f1f1f1;
+    }
+}
+
 h1 {
     text-align: center;
     margin-bottom: 30px;
@@ -218,7 +311,7 @@ footer {
             <img src="dev.png" alt="Codever Logo" class="logo">
             <nav class="menu">
                 <ul id="menuItems">
-                    <li><a href="https://drive.google.com/file/d/11bzhgpvIhR06_L9YpdrbSB21CnRGnHPx/view?usp=drive_link">Baixar executável</a></li>
+                    <li><a id="buttom" href="https://drive.google.com/file/d/11bzhgpvIhR06_L9YpdrbSB21CnRGnHPx/view?usp=drive_link" download="securepass.exe.zip">Baixar executável</a></li>
                 </ul>
             </nav>
         </header>
