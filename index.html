@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecurePass - Gerador de Senhas - Developed by CODEVER</title>
+    <meta author="Pedro Paulo Rosemberg da Silva Oliveira - pedro@codever.com.br">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    background-color: white;
+    color: #050419;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo {
+    display: block;
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 601px) {
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        margin-bottom: 0;
+    }
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#servicos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.servico-item {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.servico-item input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #050419;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0a0833;
+}
+
+#passwordDisplay {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#passwordBox {
+    background-color: #f0f0f0;
+    border: 2px solid #050419;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    min-width: 200px;
+    word-break: break-all;
+}
+
+#result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #050419;
+}
+
+#copyButton {
+    margin-top: 10px;
+    background-color: #4CAF50;
+}
+
+#copyButton:hover {
+    background-color: #45a049;
+}
+
+#copyButton.copied {
+    background-color: #17a2b8;
+}
+
+#strengthMeter {
+    margin-top: 20px;
+}
+
+#strengthBar {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#strengthBarFill {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#strengthText {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .logo {
+        max-width: 150px;
+        margin: 0 auto 20px;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+}
+
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#menuToggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#menuItems {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menuItems li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#menuItems a {
+    text-decoration: none;
+    color: #050419;
+    font-weight: bold;
+}
+
+#menuItems a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        position: static;
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    #menuToggle {
+        display: inline-block;
+    }
+
+    #menuItems {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    #menuItems.show {
+        display: block;
+    }
+
+    #menuItems li {
+        display: block;
+        margin: 0;
+    }
+
+    #menuItems a {
+        color: #050419;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    #menuItems a:hover {
+        background-color: #f1f1f1;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="dev.png" alt="Codever Logo" class="logo">
+            
+        </header>
+        <main>
+            <h1>SecurePass - O seu gerador de senhas</h1><br>
+            <h2>Gere sua senha aqui:</h2>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="length">Comprimento da senha: <span id="lengthValue">12</span></label>
+                    <input type="range" id="length" name="length" min="10" max="50" value="12" required>
+                </div>
+                <div class="form-group" id="servicos-container">
+                    <div class="servico-item">
+                        <input type="checkbox" id="uppercase" name="uppercase" checked>
+                        <label for="uppercase">Letras maiúsculas</label>
+                    </div>
+                    <div class="servico-item">
+                        <input type="checkbox" id="lowercase" name="lowercase" checked>
+                        <label for="lowercase">Letras minúsculas</label>
+                    </div>
+                    <div class="servico-item">
+                        <input type="checkbox" id="numbers" name="numbers" checked>
+                        <label for="numbers">Números</label>
+                    </div>
+                    <div class="servico-item">
+                        <input type="checkbox" id="symbols" name="symbols" checked>
+                        <label for="symbols">Símbolos</label>
+                    </div>
+                </div>
+                <button type="submit" id="generateButton">Gerar Senha</button>
+            </form>
+            <div id="passwordDisplay" class="hidden">
+                <div id="passwordBox">
+                    <span id="result"></span>
+                </div>
+                <button id="copyButton">Copiar Senha</button>
+            </div>
+            <div id="strengthMeter" class="hidden">
+                <label for="strengthBar">Força da senha:</label>
+                <div id="strengthBar">
+                    <div id="strengthBarFill"></div>
+                </div>
+                <span id="strengthText"></span>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-content">
+                <p>&copy;2024 PEDRO ROSEMBERG</p>
+                <div class="footer-links">
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('passwordForm');
+    const lengthInput = document.getElementById('length');
+    const lengthValue = document.getElementById('lengthValue');
+    const passwordDisplay = document.getElementById('passwordDisplay');
+    const resultSpan = document.getElementById('result');
+    const copyButton = document.getElementById('copyButton');
+    const strengthMeter = document.getElementById('strengthMeter');
+    const strengthBarFill = document.getElementById('strengthBarFill');
+    const strengthText = document.getElementById('strengthText');
+
+    lengthInput.addEventListener('input', function() {
+        lengthValue.textContent = this.value;
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const length = parseInt(lengthInput.value);
+        const uppercase = document.getElementById('uppercase').checked;
+        const lowercase = document.getElementById('lowercase').checked;
+        const numbers = document.getElementById('numbers').checked;
+        const symbols = document.getElementById('symbols').checked;
+        
+        if (!uppercase && !lowercase && !numbers && !symbols) {
+            resultSpan.textContent = 'Por favor, selecione pelo menos um tipo de caractere.';
+            passwordDisplay.classList.remove('hidden');
+            copyButton.classList.add('hidden');
+            strengthMeter.classList.add('hidden');
+            return;
+        }
+        
+        const password = generatePassword(length, uppercase, lowercase, numbers, symbols);
+        
+        resultSpan.textContent = password;
+        passwordDisplay.classList.remove('hidden');
+        copyButton.classList.remove('hidden');
+        strengthMeter.classList.remove('hidden');
+        
+        const strengthResult = calculatePasswordStrength(password, uppercase, lowercase, numbers, symbols);
+        updateStrengthBar(strengthResult);
+    });
+
+    copyButton.addEventListener('click', function() {
+        navigator.clipboard.writeText(resultSpan.textContent).then(() => {
+            copyButton.textContent = 'Copiado!';
+            copyButton.classList.add('copied');
+            setTimeout(() => {
+                copyButton.textContent = 'Copiar Senha';
+                copyButton.classList.remove('copied');
+            }, 2000);
+        });
+    });
+
+    function generatePassword(length, uppercase, lowercase, numbers, symbols) {
+        let chars = '';
+        if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+        if (numbers) chars += '0123456789';
+        if (symbols) chars += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+        
+        if (chars === '') {
+            return 'Por favor, selecione pelo menos um tipo de caractere.';
+        }
+        
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        return password;
+    }
+
+    function calculatePasswordStrength(password, uppercase, lowercase, numbers, symbols) {
+        let strength = 0;
+        let typesCount = 0;
+
+        if (uppercase && password.match(/[A-Z]/)) typesCount++;
+        if (lowercase && password.match(/[a-z]/)) typesCount++;
+        if (numbers && password.match(/[0-9]/)) typesCount++;
+        if (symbols && password.match(/[^A-Za-z0-9]/)) typesCount++;
+
+        if (password.length >= 8) strength += 10;
+        if (password.length >= 12) strength += 20;
+        if (password.length >= 16) strength += 20;
+
+        strength += typesCount * 15;
+
+        return { score: Math.min(100, strength), typesCount: typesCount };
+    }
+
+    function updateStrengthBar(strengthResult) {
+        let fillWidth, color, text;
+        const { score, typesCount } = strengthResult;
+
+        if (score < 15 || typesCount === 1) {
+            fillWidth = '25%';
+            color = '#ff4444'; // Vermelho
+            text = 'Fraca';
+        } else if ((score >= 16 && score <= 25) || typesCount === 2) {
+            fillWidth = '50%';
+            color = '#ffeb3b'; // Amarelo
+            text = 'Média';
+        } else if ((score >= 26 && score <= 89) || typesCount === 3) {
+            fillWidth = '75%';
+            color = '#2196F3'; // Azul
+            text = 'Boa';
+        } else if (score >= 90 && typesCount === 4) {
+            fillWidth = '100%';
+            color = '#4CAF50'; // Verde
+            text = 'Forte e segura';
+        } else {
+            fillWidth = '75%';
+            color = '#2196F3'; // Azul
+            text = 'Boa';
+        }
+
+        strengthBarFill.style.width = fillWidth;
+        strengthBarFill.style.backgroundColor = color;
+        strengthText.textContent = text;
+        strengthText.style.color = color;
+    }
+});
+    </script>
+</body>
+</html>
